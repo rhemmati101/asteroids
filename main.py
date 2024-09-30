@@ -18,8 +18,12 @@ def main():
             if event.type == pygame.QUIT:
                 return
         
+        # update object positions
+        player.update(dt)
+        # draw to screen
         screen.fill("black")
         player.draw(screen)
+        # print screen
         pygame.display.flip()
 
         dt = clock.tick(60)/1000
