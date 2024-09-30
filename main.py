@@ -6,8 +6,14 @@ def main():
     print("Starting asteroids!")
 
     pygame.init()
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updatable, drawable)
+    
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+
     
     clock = pygame.time.Clock()
     dt = 0
@@ -19,10 +25,12 @@ def main():
                 return
         
         # update object positions
-        player.update(dt)
+        for obj in updatable:
+            obj.update(dt)
         # draw to screen
         screen.fill("black")
-        player.draw(screen)
+        for obj in drawable:
+            obj.draw(screen)
         # print screen
         pygame.display.flip()
 
