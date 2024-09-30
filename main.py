@@ -33,6 +33,12 @@ def main():
         # update object positions
         for obj in updatable:
             obj.update(dt)
+        
+        # collision detection
+        for asteroid in asteroids:
+            if asteroid.collides_with(player):
+                print("Game over!")
+                return
 
         # draw to screen
         screen.fill("black")
